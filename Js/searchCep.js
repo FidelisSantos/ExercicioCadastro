@@ -16,11 +16,10 @@ export async function searchCep() {
         }
     });
 }
-function validateCEP(result){
+const validateCEP = (result) =>{
     const validate = {
         city: () => {
             if (result.localidade != '' && result.localidade != undefined) {
-                console.log("entrei validação cidade")
                 const cityInput = document.getElementById('city');
                 cityInput.value = result.localidade;
                 cityInput.disabled = true;
@@ -29,14 +28,14 @@ function validateCEP(result){
         adress: () => {
             if (result.logradouro != ''&& result.logradouro != undefined){
                 const adressInput = document.getElementById('adress');
-                adressInput.value = adress.logradouro;
+                adressInput.value = result.logradouro;
                 adressInput.disabled = true;
             } 
         },
         district: () => {
             if (result.bairro != '' && result.bairro != undefined) {
                 const districtInput = document.getElementById('district');
-                districtInput.value = district.bairro;
+                districtInput.value = result.bairro;
                 districtInput.disabled = true;
             }
         },
@@ -51,46 +50,4 @@ function validateCEP(result){
     Object.values(validate).forEach((callback) => {
         callback();
     })
-}
-
-function validateCity(result) {
-    if (result.localidade === '' || result.erro || result.localidade == undefined) {
-        alert('Cep Inválido');
-        return false;
-    }
-    console.log("entrei validação cidade")
-        const cityInput = document.getElementById('city');
-        cityInput.value = result.localidade;
-        cityInput.disabled = true;
-        return true;
-}
-
-function validateAdress(adress) {
-    if (adress.logradouro === '' || adress.erro) return false;
-    console.log("entrei validação Endereço")
-
-        const adressInput = document.getElementById('adress');
-        adressInput.value = adress.logradouro;
-        adressInput.disabled = true;
-        return true;
-   
-}
-
-function validateDistrict(district) {
-    if (district.bairro === '' || district.erro) return false;
-    console.log("entrei validação distrito")
-        const districtInput = document.getElementById('district');
-        districtInput.value = district.bairro;
-        districtInput.disabled = true;
-        return true;
-    
-}
-
-export function validateState(state) {
-    if (state.uf !== '' || state.erro) return false;
-    console.log("entrei validação estado")
-        const stateInput = document.getElementById('state');
-        stateInput.value = state.uf;
-        return true;
-    
 }

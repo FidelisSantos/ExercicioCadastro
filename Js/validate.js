@@ -1,6 +1,6 @@
 import { toggleActiveClass as template } from './template.js';
 
-export function validatePersonalInformation() {
+export const validatePersonalInformation = () => {
     const name = document.querySelector('#name');
     const date = document.querySelector('#date');
     const cpf = document.querySelector('#cpf');
@@ -34,7 +34,7 @@ export function validatePersonalInformation() {
     return !error
 }
 
-export function validateAdress() {
+export const validateAdress = () => {
     const cep = document.querySelector('#search');
     const adress = document.querySelector('#adress');
     const district = document.querySelector('#district');
