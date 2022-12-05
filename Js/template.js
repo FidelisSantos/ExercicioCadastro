@@ -1,7 +1,6 @@
 import { calculateDays, dateFormatter } from "./date.js";
 
-export const insertHtml = () => {
-    const nav = document.querySelector('#finish-tab');
+export function insertHtml() {
     const div = document.querySelector('#end');
     const name = document.querySelector('#name').value;
     const date = dateFormatter();
@@ -12,12 +11,13 @@ export const insertHtml = () => {
     const complement = document.querySelector('#addressComplement').value;
     const addressNumber = document.querySelector('#addressNumber').value;
     const message = calculateDays();
+    console.log(state);
     let messageAdress;
 
     if(complement === '' && city !=='' && state !=='') 
-        messageAdress = `<p>${adress} , Cidade: ${city} ,  UF: ${state} , nº: ${addressNumber} </p>`
+        messageAdress = `<p>${adress} , Cidade: ${city} ,  Uf: ${state} , nº: ${addressNumber} </p>`
     else if(complement !== ''  && city !== '' && state !== '')
-        messageAdress = `<p> ${adress} , Cidade: ${city} , UF: ${state} ,  nº: ${addressNumber} ,  Complemento:${complement} </p>`
+        messageAdress = `<p> ${adress} , Cidade: ${city} , Uf: ${state} ,  nº: ${addressNumber} ,  Complemento:${complement} </p>`
     else if(complement !== ''  && city !== '')
         messageAdress = `<p> ${adress} , ${city} ,  ${addressNumber} ,  ${complement} </p>`
     else if(complement === ''  && city !== '')
@@ -25,20 +25,19 @@ export const insertHtml = () => {
 
     
         let finish = `
-            <p>Nome: ${(name.toUpperCase())} </p><br>
-            <p>CPF: ${cpf} </p><br>
-            <p>Data de Nascimento:  ${date} </p>
-            <br>
-            ${messageAdress}
-            <br>
-            <p>${ message }  </p>
+        <p>Nome: ${(name.toUpperCase())} </p><br>
+        <p>CPF: ${cpf} </p><br>
+        <p>Data de Nascimento:  ${date} </p>
+        <br>
+        ${messageAdress}
+        <br>
+        <p>${ message }  </p>
         `
         div.innerHTML = finish;
-        nav.setAttribute('data-toggle', 'tab');
         return;
 }
 
-export const toggleActiveClass = (el, status) => {
+export function toggleActiveClass(el, status) {
     if (status) {
         el.classList.add('sucess');
         el.classList.remove('error');
