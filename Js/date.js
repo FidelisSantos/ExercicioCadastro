@@ -3,12 +3,13 @@ export function dateFormatter() {
   let myDate = new Date(date);
   let formatter = new Intl.DateTimeFormat('pt-BR');
 
-  var dateFormatter = formatter.format(myDate);
+  const dateFormatter = formatter.format(myDate);
   return dateFormatter;
 }
 
 export function calculateDays() {
   const date = document.querySelector('#date').value;
+  let message = '';
   let today = new Date();
   let bday = new Date(date);
 
@@ -18,14 +19,14 @@ export function calculateDays() {
     upcomingBday.setFullYear(today.getFullYear() + 1);
   }
 
-  var one_day = 24 * 60 * 60 * 1000;
+  const one_day = 24 * 60 * 60 * 1000;
 
   let daysLeft = Math.ceil((upcomingBday.getTime() - today.getTime()) / (one_day));
 
   if (daysLeft > 0) {
-    var message = `Faltam ${daysLeft} dias para seu aniversário`;
+     message = `Faltam ${daysLeft} dias para seu aniversário`;
   } else {
-    var message = "Parabéns seu aniversário é hoje.";
+     message = "Parabéns seu aniversário é hoje.";
   }
   return message;
 }
