@@ -10,7 +10,7 @@ $('#advanced').on('click', function (e) {
 })
 
 $('#return').on('click', function (e) {
-    $('#dice-tab').tab('show');
+    $('#data-tab').tab('show');
 })
 
 $('#next').on('click', function (e) {

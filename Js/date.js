@@ -10,18 +10,18 @@ export function dateFormatter() {
 export function calculateDays() {
   const date = document.querySelector('#date').value;
   let message = '';
-  let today = new Date();
-  let bday = new Date(date);
+  const today = new Date();
+  const birthday = new Date(date);
 
-  let upcomingBday = new Date(today.getFullYear(), bday.getMonth(), bday.getDate());
+  const upcomingBday = new Date(today.getFullYear(), birthday.getMonth(), birthday.getDate());
 
   if (today > upcomingBday) {
     upcomingBday.setFullYear(today.getFullYear() + 1);
   }
 
-  const one_day = 24 * 60 * 60 * 1000;
+  const oneDay = 24 * 60 * 60 * 1000;
 
-  let daysLeft = Math.ceil((upcomingBday.getTime() - today.getTime()) / (one_day));
+  const daysLeft = Math.ceil((upcomingBday.getTime() - today.getTime()) / (oneDay));
 
   if (daysLeft > 0) {
      message = `Faltam ${daysLeft} dias para seu aniversário`;

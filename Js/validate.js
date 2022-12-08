@@ -41,25 +41,26 @@ export const validateAdress = () => {
     const addressNumber = document.querySelector('#addressNumber');
     const city = document.querySelector('#city');
     let error = 0;
+    let status;
     const validate = {
         cep: () => {
-            let status = (cep.value !== '');
+            status = (cep.value !== '');
             error += template(cep, status);
         },
         adress: () => {
-            let status = (adress.value !== '');
+            status = (adress.value !== '');
             error += template(adress, status);
         },
         district: () => {
-            let status = (district.value !== '');
+            status = (district.value !== '');
             error += template(district, status);
         },
         addressNumber: () => {
-            let status = (addressNumber.value !== '' && addressNumber.value > 0);
+            status = (addressNumber.value !== '' && addressNumber.value > 0);
             error += template(addressNumber, status);
         },
         city: () => {
-            let status = (city.value!== '');
+            status = (city.value!== '');
             error += template(city, status);
         }
     }
@@ -71,31 +72,23 @@ export const validateAdress = () => {
 
 function isCpf(cpf){
     let soma = 0;
-    soma += cpf[0] * 10;
-    soma += cpf[1] * 9;
-    soma += cpf[2] * 8;
-    soma += cpf[3] * 7;
-    soma += cpf[4] * 6;
-    soma += cpf[5] * 5;
-    soma += cpf[6] * 4;
-    soma += cpf[7] * 3;
-    soma += cpf[8] * 2;
-    soma = (soma * 10)%11;  
+    let cpfIndex = 0;
+    
+    for(let i = 10; i >= 2 ; i--)
+    {
+        soma += cpf[cpfIndex++] * i;
+    }
+    soma = (soma * 10)%11;
     if(soma == 10 || soma == 11) 
         soma = 0;
     if(soma != cpf[9]) return false;
 
     soma = 0;
-    soma += cpf[0] * 11;
-    soma += cpf[1] * 10;
-    soma += cpf[2] * 9;
-    soma += cpf[3] * 8;
-    soma += cpf[4] * 7;
-    soma += cpf[5] * 6;
-    soma += cpf[6] * 5;
-    soma += cpf[7] * 4;
-    soma += cpf[8] * 3;
-    soma += cpf[9] * 2;
+    cpfIndex = 0;
+    for(let i = 11; i >= 2 ; i--)
+    {
+        soma += cpf[cpfIndex++] * i;
+    }
     soma = (soma * 10)%11;  
     if(soma == 10 || soma == 11) 
     soma = 0;
