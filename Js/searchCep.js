@@ -1,14 +1,13 @@
 export async function searchCep() {
-    const search = document.getElementById('search');
-    const searchQuery = search.value;
+    const search = document.getElementById('search').value;
     await $.ajax({
         type: 'GET',
-        url: `https://viacep.com.br/ws/${searchQuery}/json/`,
+        url: `https://viacep.com.br/ws/${search}/json/`,
         datatype: "json",
         success: function (result) {
             if (result.erro || result.uf == '' || result.localidade == '') return alert('Cep Inválido'); 
-            else if(result.logradouro == '' && result.bairro == '') alert('Cep único para a cidade. Por favor preencher os dados do bairro e logradouro');
-            else if(result.logradouro == '') alert('Cep único para o bairro. Por favor preencher os dados do logradouro');
+            else if(result.logradouro == '' && result.bairro == '') return alert('Cep único para a cidade. Por favor preencher os dados do bairro e logradouro');
+            else if(result.logradouro == '') return alert('Cep único para o bairro. Por favor preencher os dados do logradouro');
             validateCEP(result);
         },
         error: function () {

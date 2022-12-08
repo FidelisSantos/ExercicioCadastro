@@ -6,6 +6,7 @@ export const insertHtml = () => {
     const name = document.querySelector('#name').value;
     const date = dateFormatter();
     const cpf = document.querySelector('#cpf').value;
+    const cpfFormatted = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
     const adress = document.getElementById('adress').value;
     const city = document.getElementById('city').value;
     const state = document.getElementById('state').value;
@@ -26,7 +27,7 @@ export const insertHtml = () => {
     
         let finish = `
             <p>Nome: ${(name.toUpperCase())} </p><br>
-            <p>CPF: ${cpf} </p><br>
+            <p>CPF: ${cpfFormatted} </p><br>
             <p>Data de Nascimento:  ${date} </p>
             <br>
             ${messageAdress}
