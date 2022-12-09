@@ -9,22 +9,23 @@ export const validatePersonalInformation = () => {
     let age = today.getFullYear() - bday.getFullYear();
     let month = today.getMonth() - bday.getMonth();
     let error = 0;
+    let status;
     const regex = /[0-9]/;
     const validate = {
         name: () => {
-            let status = (name.value !== '' && !regex.test(name.value));
+            status = (name.value !== '' && !regex.test(name.value));
             error += template(name, status);
         },
         cpf: () => {
             console.log(cpf.value);
-            let status = (isCpf(cpf.value));
+            status = (isCpf(cpf.value));
             error += template(cpf, status);
         },
         date: () => {
             if (month < 0 || (month === 0 && today.getDate() <= bday.getDate())) {
                 age--;
             }
-            let status = (age >= 0);
+            status = (age >= 0);
             error += template(date, status);
         }
     }
